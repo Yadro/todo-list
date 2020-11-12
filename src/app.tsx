@@ -7,11 +7,10 @@ import MakeTodo from 'components/MakeTodo';
 import TodoStore from 'services/TodoStore';
 
 function App() {
-    const todoStore = new TodoStore();
     return (
         <Container>
             <h1>Todo list</h1>
-            <TodoList todos={todoStore.todos}/>
+            <TodoList todos={TodoStore.todos}/>
             <MakeTodo/>
         </Container>
     );
