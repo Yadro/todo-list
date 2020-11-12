@@ -1,10 +1,19 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Input } from 'semantic-ui-react';
+import { Button, Grid, Input } from 'semantic-ui-react';
 
 function MakeTodo() {
     return (
-        <Input />
+        <Grid columns={2}>
+            <Grid.Row>
+                <Grid.Column width={14}>
+                    <Input style={{ width: '100%' }}/>
+                </Grid.Column>
+                <Grid.Column width={2}>
+                    <Button>+</Button>
+                </Grid.Column>
+            </Grid.Row>
+        </Grid>
     );
 }
 
