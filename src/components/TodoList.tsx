@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
-import TodoItem from 'services/TodoItem';
 import { Checkbox, Input, List } from 'semantic-ui-react';
+import { cn } from 'services/Helper';
+import TodoItem from 'services/TodoItem';
 import './TodoList.css';
 
 function TodoList({ todos }: { todos: TodoItem[] }) {
@@ -25,7 +26,12 @@ function TodoList({ todos }: { todos: TodoItem[] }) {
                     checked={todo.completed}
                     onChange={() => onCheckboxClick(todo)}
                 />
-                <span className='todo-title'>
+                <span
+                    className={cn([
+                        'todo-title',
+                        todo.completed && 'todo__completed'
+                    ])}
+                >
                     {editId === todo.id ?
                         <Input
                             size='small'

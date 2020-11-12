@@ -26,6 +26,7 @@ function MakeTodo() {
                 <Grid.Column width={2}>
                     <Button
                         onClick={addTodo}
+                        style={{ width: '100%' }}
                     >+</Button>
                 </Grid.Column>
             </Grid.Row>
