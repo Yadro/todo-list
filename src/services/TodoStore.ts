@@ -7,13 +7,12 @@ class TodoStore {
     constructor() {
         makeAutoObservable(this);
         this.todos = [
-            new TodoItem('one'),
-            new TodoItem('two'),
+            new TodoItem('one', null),
         ];
     }
 
     addItem(title: string) {
-        this.todos.push(new TodoItem(title));
+        this.todos.push(new TodoItem(title, null));
     }
 }
 

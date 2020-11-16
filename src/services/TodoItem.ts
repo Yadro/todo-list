@@ -5,9 +5,11 @@ export default class TodoItem {
     title: string = '';
     completed: boolean = false;
     dateCreation: Date = new Date();
+    category: string = null;
 
-    constructor(title: string) {
+    constructor(title: string, category: string) {
         makeAutoObservable(this);
         this.title = title;
+        this.category = category;
     }
 }
