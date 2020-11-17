@@ -26,7 +26,10 @@ const MenuItem = observer(({ category }: MenuItemProps): JSX.Element => {
     }
 
     return (
-        <Menu.Item onClick={() => onClick(category)}>
+        <Menu.Item
+            onClick={() => onClick(category)}
+            active={CategoryStore.currentCategory.id === category.id}
+        >
             {category.isEditable ?
                 <InputWithKeyHandle
                     value={category.name}
