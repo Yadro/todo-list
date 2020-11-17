@@ -16,6 +16,7 @@ export class Category {
 }
 
 class CategoriesStore {
+    currentCategory: Category = null;
     categories: Category[] = [];
 
     constructor() {
@@ -23,6 +24,7 @@ class CategoriesStore {
         this.categories = [
             new Category('Index', false),
         ];
+        this.currentCategory = this.categories[0];
     }
 
     addCategory() {
