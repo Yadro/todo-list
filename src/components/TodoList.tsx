@@ -7,7 +7,7 @@ import TodoItem from 'services/TodoItem';
 import './TodoList.css';
 
 function TodoList({ todos }: { todos: TodoItem[] }) {
-    const [editId, setEditId] = useState<number>(null);
+    const [editId, setEditId] = useState<string>(null);
 
     const onCheckboxClick = action((todo: TodoItem): void => {
         todo.completed = !todo.completed;
