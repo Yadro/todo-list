@@ -8,6 +8,7 @@ function MakeTodo() {
 
     function addTodo() {
         TodoStore.addItem(title);
+        TodoStore.saveData();
         setTitle('');
     }
 

@@ -7,7 +7,7 @@ class CategoriesStore {
     currentCategory: Category = null;
     categories: Category[] = [];
 
-    static storeName = 'categories';
+    private static storeName = 'categories';
 
     constructor() {
         makeAutoObservable(this);
@@ -22,7 +22,7 @@ class CategoriesStore {
         this.currentCategory = category;
     }
 
-    restoreData() {
+    private restoreData() {
         const data = window.localStorage.getItem(CategoriesStore.storeName);
         let parsedData = JSON.parse(data);
         if (!parsedData) {

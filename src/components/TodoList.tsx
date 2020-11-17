@@ -7,16 +7,24 @@ import TodoItem from 'entities/TodoItem';
 import TodoStore from 'services/TodoStore';
 import './TodoList.css';
 
-function TodoList() {
+export default observer(function TodoList() {
     const [editId, setEditId] = useState<string>(null);
+    let timerId: number;
 
     const onCheckboxClick = action((todo: TodoItem): void => {
         todo.completed = !todo.completed;
+        TodoStore.saveData();
     });
 
     const onTitleChange = (todo: TodoItem) => {
         return action((e) => {
             todo.title = e.target.value;
+            if (timerId) {
+                clearTimeout(timerId);
+            }
+            timerId = window.setTimeout(() => {
+                TodoStore.saveData();
+            }, 200);
         });
     }
 
@@ -53,6 +61,4 @@ function TodoList() {
             {list}
         </List>
     );
-}
-
-export default observer(TodoList);
+});
