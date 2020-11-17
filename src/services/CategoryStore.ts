@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { Category } from 'entities/Category';
+import Category from 'entities/Category';
 
 const defaultCategory = new Category('Index', false);
 

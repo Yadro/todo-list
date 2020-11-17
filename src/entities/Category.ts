@@ -1,7 +1,7 @@
 import { uuidv4 } from '../services/Helper';
 import { makeAutoObservable } from 'mobx';
 
-export class Category {
+export default class Category {
     id: string;
     name: string;
     color: string; // TODO

@@ -1,10 +1,11 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { action } from 'mobx';
-import { Button, Menu } from 'semantic-ui-react';
+import { Button, Label, Menu } from 'semantic-ui-react';
 import { InputWithKeyHandle } from './InputWithKeyHandle';
 import CategoryStore  from 'services/CategoryStore';
-import { Category } from 'entities/Category';
+import TodoStore from 'services/TodoStore';
+import Category from 'entities/Category';
 
 interface MenuItemProps {
     category: Category;
@@ -32,7 +33,10 @@ const MenuItem = observer(({ category }: MenuItemProps): JSX.Element => {
                     onChange={onChange}
                     onPressEnter={onPressEnter}
                 /> :
-                category.name
+                <>
+                    {category.name}
+                    <Label>{TodoStore.getCount(category)}</Label>
+                </>
             }
         </Menu.Item>
     );
