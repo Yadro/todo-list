@@ -1,19 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { uuidv4 } from './Helper';
-
-export class Category {
-    id: string;
-    name: string;
-    color: string; // TODO
-    isEditable: boolean;
-
-    constructor(name: string, isEditable: boolean) {
-        this.id = uuidv4();
-        this.name = name;
-        this.isEditable = isEditable;
-        makeAutoObservable(this);
-    }
-}
+import { Category } from 'entities/Category';
 
 class CategoriesStore {
     currentCategory: Category = null;
@@ -29,6 +15,10 @@ class CategoriesStore {
 
     addCategory() {
         this.categories.push(new Category('', true));
+    }
+
+    setCategory(category: Category) {
+        this.currentCategory = category;
     }
 }
 

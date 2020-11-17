@@ -1,4 +1,4 @@
-import TodoItem from './TodoItem';
+import TodoItem from '../entities/TodoItem';
 import { makeAutoObservable } from 'mobx';
 import CategoryStore from './CategoryStore';
 
@@ -16,6 +16,11 @@ class TodoStore {
     addItem(title: string) {
         const categoryId = CategoryStore.currentCategory.id
         this.todos.push(new TodoItem(title, categoryId));
+    }
+
+    get currentTodos(): TodoItem[] {
+        const categoryId = CategoryStore.currentCategory.id;
+        return this.todos.filter(i => i.categoryId === categoryId);
     }
 }
 

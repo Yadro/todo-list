@@ -3,7 +3,8 @@ import { observer } from 'mobx-react';
 import { action } from 'mobx';
 import { Button, Menu } from 'semantic-ui-react';
 import { InputWithKeyHandle } from './InputWithKeyHandle';
-import CategoryStore, { Category } from 'services/CategoryStore';
+import CategoryStore  from 'services/CategoryStore';
+import { Category } from 'entities/Category';
 
 interface MenuItemProps {
     category: Category;
@@ -18,8 +19,12 @@ const MenuItem = observer(({ category }: MenuItemProps): JSX.Element => {
         category.isEditable = false;
     });
 
+    function onClick(category: Category) {
+        CategoryStore.setCategory(category);
+    }
+
     return (
-        <Menu.Item>
+        <Menu.Item onClick={() => onClick(category)}>
             {category.isEditable ?
                 <InputWithKeyHandle
                     value={category.name}

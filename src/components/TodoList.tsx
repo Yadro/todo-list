@@ -3,10 +3,11 @@ import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import { Checkbox, Input, List } from 'semantic-ui-react';
 import { cn } from 'services/Helper';
-import TodoItem from 'services/TodoItem';
+import TodoItem from 'entities/TodoItem';
+import TodoStore from 'services/TodoStore';
 import './TodoList.css';
 
-function TodoList({ todos }: { todos: TodoItem[] }) {
+function TodoList() {
     const [editId, setEditId] = useState<string>(null);
 
     const onCheckboxClick = action((todo: TodoItem): void => {
@@ -19,7 +20,7 @@ function TodoList({ todos }: { todos: TodoItem[] }) {
         });
     }
 
-    const list = todos.map(todo =>
+    const list = TodoStore.currentTodos.map(todo =>
         <List.Item key={todo.id}>
             <List.Content>
                 <Checkbox
