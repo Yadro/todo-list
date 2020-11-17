@@ -1,16 +1,17 @@
 import { makeAutoObservable } from 'mobx';
 import { Category } from 'entities/Category';
 
+const defaultCategory = new Category('Index', false);
+
 class CategoriesStore {
     currentCategory: Category = null;
     categories: Category[] = [];
 
+    static storeName = 'categories';
+
     constructor() {
         makeAutoObservable(this);
-        this.categories = [
-            new Category('Index', false),
-        ];
-        this.currentCategory = this.categories[0];
+        this.restoreData();
     }
 
     addCategory() {
@@ -19,6 +20,23 @@ class CategoriesStore {
 
     setCategory(category: Category) {
         this.currentCategory = category;
+    }
+
+    restoreData() {
+        const data = window.localStorage.getItem(CategoriesStore.storeName);
+        let parsedData = JSON.parse(data);
+        if (!parsedData) {
+            parsedData = [defaultCategory];
+        }
+        this.categories = parsedData;
+        this.currentCategory = parsedData[0];
+    }
+
+    saveData() {
+        window.localStorage.setItem(
+            CategoriesStore.storeName,
+            JSON.stringify(this.categories),
+        );
     }
 }
 

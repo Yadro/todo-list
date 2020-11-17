@@ -17,6 +17,7 @@ const MenuItem = observer(({ category }: MenuItemProps): JSX.Element => {
 
     const onPressEnter = action(() => {
         category.isEditable = false;
+        CategoryStore.saveData();
     });
 
     function onClick(category: Category) {
