@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
-import { Checkbox, Input, List } from 'semantic-ui-react';
+import { Checkbox, Grid, Input, List } from 'semantic-ui-react';
 import { cn } from 'services/Helper';
 import TodoItem from 'entities/TodoItem';
 import TodoStore from 'services/TodoStore';
+import TodoListMenu from './TodoListMenu';
 import './TodoList.css';
 
 export default observer(function TodoList() {
@@ -36,10 +37,10 @@ export default observer(function TodoList() {
                     onChange={() => onCheckboxClick(todo)}
                 />
                 <span
-                    className={cn([
+                    className={cn(
                         'todo-title',
                         todo.completed && 'todo__completed'
-                    ])}
+                    )}
                 >
                     {editId === todo.id ?
                         <Input
@@ -57,8 +58,15 @@ export default observer(function TodoList() {
         </List.Item>
     );
     return (
-        <List divided>
-            {list}
-        </List>
+        <div>
+            <Grid>
+                <Grid.Column floated='right' width={1}>
+                    <TodoListMenu/>
+                </Grid.Column>
+            </Grid>
+            <List divided>
+                {list}
+            </List>
+        </div>
     );
 });
