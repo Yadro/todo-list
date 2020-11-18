@@ -1,0 +1,9 @@
+.main {
+    display: flex;
+    flex-direction: row;
+}
+
+.todo-container {
+    flex: 1;
+    margin: 0 15px;
+}

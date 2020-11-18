@@ -53,7 +53,7 @@ export default observer(function LeftPanel(): JSX.Element {
     }
 
     return (
-        <div>
+        <div className='left-panel'>
             <Menu vertical>
                 {categories.map((category) => (
                     <MenuItem key={category.id} category={category}/>
