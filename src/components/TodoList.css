@@ -1,8 +1,13 @@
-.todo-title {
-    margin: 0 10px;
+.todo-item {
+    display: flex;
 }
 
-.todo__completed {
+.todo-title {
+    margin: 0 10px;
+    flex: 1;
+}
+
+.todo-item__completed {
     text-decoration: line-through;
     color: grey;
 }

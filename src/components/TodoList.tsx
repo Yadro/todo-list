@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
-import { Checkbox, Grid, Input, List } from 'semantic-ui-react';
+import { Button, Checkbox, Grid, Input, List, Menu } from 'semantic-ui-react';
 import { cn } from 'services/Helper';
 import TodoItem from 'entities/TodoItem';
 import TodoStore from 'services/TodoStore';
@@ -31,7 +31,7 @@ export default observer(function TodoList() {
 
     const list = TodoStore.currentTodos.map(todo =>
         <List.Item key={todo.id}>
-            <List.Content>
+            <List.Content className='todo-item'>
                 <Checkbox
                     checked={todo.completed}
                     onChange={() => onCheckboxClick(todo)}
@@ -39,7 +39,7 @@ export default observer(function TodoList() {
                 <span
                     className={cn(
                         'todo-title',
-                        todo.completed && 'todo__completed'
+                        todo.completed && 'todo-item__completed'
                     )}
                 >
                     {editId === todo.id ?
@@ -50,10 +50,11 @@ export default observer(function TodoList() {
                             onChange={onTitleChange(todo)}
                         /> :
                         <span onClick={() => setEditId(todo.id)}>
-                        {todo.title}
-                    </span>
+                            {todo.title}
+                        </span>
                     }
                 </span>
+                <Button circular icon='trash'/>
             </List.Content>
         </List.Item>
     );
