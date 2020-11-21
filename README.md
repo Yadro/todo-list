@@ -4,4 +4,5 @@
 # Stack
 - TypeScript
 - React
+- Mobx
 - Webpack
