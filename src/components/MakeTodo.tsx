@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
-import { Button, Grid, Input } from 'semantic-ui-react';
+import { Button, Input } from 'semantic-ui-react';
 import TodoStore from 'services/TodoStore';
+import './MakeTodo.css';
 
 function MakeTodo(): JSX.Element {
     const [title, setTitle] = useState<string>('');
@@ -12,26 +13,19 @@ function MakeTodo(): JSX.Element {
     }
 
     return (
-        <Grid columns={2}>
-            <Grid.Row>
-                <Grid.Column width={14}>
-                    <Input
-                        style={{ width: '100%' }}
-                        value={title}
-                        onChange={(e) =>
-                            setTitle(e.target.value)
-                        }
-                    />
-                </Grid.Column>
-                <Grid.Column width={2}>
-                    <Button
-                        onClick={addTodo}
-                        style={{ width: '100%' }}
-                        icon='plus circle'
-                    />
-                </Grid.Column>
-            </Grid.Row>
-        </Grid>
+        <div className='make-todo'>
+            <Input
+                className='make-todo--input'
+                value={title}
+                onChange={(e) =>
+                    setTitle(e.target.value)
+                }
+            />
+            <Button
+                onClick={addTodo}
+                icon='plus circle'
+            />
+        </div>
     );
 }
 
