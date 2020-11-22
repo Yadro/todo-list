@@ -24,6 +24,15 @@ class TodoStore {
         this.saveData();
     }
 
+    changeCategory(category: Category): void {
+        const defaultCategory = CategoryStore.categories[0];
+        this.todos
+            .filter(i => i.categoryId === category.id)
+            .forEach(i => {
+                i.categoryId = defaultCategory.id;
+            });
+    }
+
     getCount(category: Category): number {
         return this.todos.filter(i =>
             i.categoryId === category.id && !i.completed

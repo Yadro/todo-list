@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import Category from 'entities/Category';
+import TodoStore from './TodoStore';
 
 const defaultCategory = new Category('Index', false);
 
@@ -14,15 +15,23 @@ class CategoriesStore {
         this.restoreData();
     }
 
-    addCategory() {
+    addItem(): void {
         this.categories.push(new Category('', true));
+        this.saveData();
     }
 
-    setCategory(category: Category) {
+    removeItem(category: Category): void {
+        this.categories = this.categories.filter(
+            i => i.id !== category.id);
+        TodoStore.changeCategory(category);
+        this.saveData();
+    }
+
+    setCategory(category: Category): void {
         this.currentCategory = category;
     }
 
-    private restoreData() {
+    private restoreData(): void {
         const data = window.localStorage.getItem(CategoriesStore.storeName);
         let parsedData = JSON.parse(data);
         if (!parsedData) {
@@ -32,7 +41,7 @@ class CategoriesStore {
         this.currentCategory = parsedData[0];
     }
 
-    saveData() {
+    saveData(): void {
         window.localStorage.setItem(
             CategoriesStore.storeName,
             JSON.stringify(this.categories),

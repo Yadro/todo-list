@@ -49,7 +49,7 @@ export default observer(function LeftPanel(): JSX.Element {
     const categories = CategoryStore.categories;
 
     function addCategory() {
-        CategoryStore.addCategory();
+        CategoryStore.addItem();
     }
 
     return (

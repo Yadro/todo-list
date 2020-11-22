@@ -7,6 +7,7 @@ import TodoItem from 'entities/TodoItem';
 import TodoStore from 'services/TodoStore';
 import TodoListMenu from './TodoListMenu';
 import './TodoList.css';
+import CategoryStore from '../services/CategoryStore';
 
 export default observer(function TodoList(): JSX.Element {
     const [editId, setEditId] = useState<string>(null);
@@ -62,7 +63,7 @@ export default observer(function TodoList(): JSX.Element {
         <div className='todo-list'>
             <Grid>
                 <Grid.Column floated='right' width={1}>
-                    <TodoListMenu/>
+                    <TodoListMenu category={CategoryStore.currentCategory}/>
                 </Grid.Column>
             </Grid>
             <List divided>
