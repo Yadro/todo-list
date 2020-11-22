@@ -9,7 +9,7 @@ interface Props {
 
 export default function TodoListMenu(props: Props): JSX.Element {
     const { category } = props;
-    const defaultCategory = CategoryStore.categories[0];
+    const defaultCategory = CategoryStore.defaultCategory;
 
     function onDelete(): void {
         CategoryStore.removeItem(category);

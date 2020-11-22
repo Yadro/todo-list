@@ -25,7 +25,7 @@ class TodoStore {
     }
 
     changeCategory(category: Category): void {
-        const defaultCategory = CategoryStore.categories[0];
+        const defaultCategory = CategoryStore.defaultCategory;
         this.todos
             .filter(i => i.categoryId === category.id)
             .forEach(i => {

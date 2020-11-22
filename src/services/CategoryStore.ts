@@ -31,6 +31,10 @@ class CategoriesStore {
         this.currentCategory = category;
     }
 
+    get defaultCategory() {
+        return this.categories[0];
+    }
+
     private restoreData(): void {
         const data = window.localStorage.getItem(CategoriesStore.storeName);
         let parsedData = JSON.parse(data);
