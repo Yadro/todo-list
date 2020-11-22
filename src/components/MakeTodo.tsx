@@ -27,7 +27,8 @@ function MakeTodo(): JSX.Element {
                     <Button
                         onClick={addTodo}
                         style={{ width: '100%' }}
-                    >+</Button>
+                        icon='plus circle'
+                    />
                 </Grid.Column>
             </Grid.Row>
         </Grid>
