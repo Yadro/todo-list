@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
-import { Button, Checkbox, Grid, Input, List, Menu } from 'semantic-ui-react';
+import { Checkbox, Grid, Icon, Input, List } from 'semantic-ui-react';
 import { cn } from 'services/Helper';
 import TodoItem from 'entities/TodoItem';
 import TodoStore from 'services/TodoStore';
 import TodoListMenu from './TodoListMenu';
 import './TodoList.css';
 
-export default observer(function TodoList() {
+export default observer(function TodoList(): JSX.Element {
     const [editId, setEditId] = useState<string>(null);
     let timerId: number;
 
@@ -27,7 +27,7 @@ export default observer(function TodoList() {
                 TodoStore.saveData();
             }, 200);
         });
-    }
+    };
 
     const list = TodoStore.currentTodos.map(todo =>
         <List.Item key={todo.id}>
@@ -54,12 +54,12 @@ export default observer(function TodoList() {
                         </span>
                     }
                 </span>
-                <Button circular icon='trash'/>
+                <Icon className='trash-btn' name='trash' onClick={() => TodoStore.removeItem(todo)}/>
             </List.Content>
         </List.Item>
     );
     return (
-        <div>
+        <div className='todo-list'>
             <Grid>
                 <Grid.Column floated='right' width={1}>
                     <TodoListMenu/>

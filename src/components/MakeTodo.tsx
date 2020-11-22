@@ -3,12 +3,11 @@ import { observer } from 'mobx-react';
 import { Button, Grid, Input } from 'semantic-ui-react';
 import TodoStore from 'services/TodoStore';
 
-function MakeTodo() {
+function MakeTodo(): JSX.Element {
     const [title, setTitle] = useState<string>('');
 
-    function addTodo() {
+    function addTodo(): void {
         TodoStore.addItem(title);
-        TodoStore.saveData();
         setTitle('');
     }
 

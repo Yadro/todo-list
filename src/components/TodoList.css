@@ -1,5 +1,11 @@
+.todo-list {
+    margin-bottom: 1em;
+}
+
 .todo-item {
     display: flex;
+    align-items: center;
+    height: 2em;
 }
 
 .todo-title {
@@ -10,4 +16,12 @@
 .todo-item__completed {
     text-decoration: line-through;
     color: grey;
+}
+
+.trash-btn {
+    display: none !important;
+}
+
+.todo-item:hover .trash-btn {
+    display: block !important;
 }

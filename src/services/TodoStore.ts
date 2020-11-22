@@ -9,13 +9,19 @@ class TodoStore {
     private static storeName = 'todo';
 
     constructor() {
-        makeAutoObservable(this);
         this.restoreData();
+        makeAutoObservable(this);
     }
 
-    addItem(title: string) {
-        const categoryId = CategoryStore.currentCategory.id
+    addItem(title: string): void {
+        const categoryId = CategoryStore.currentCategory.id;
         this.todos.push(new TodoItem(title, categoryId));
+        this.saveData();
+    }
+
+    removeItem(item: TodoItem): void {
+        this.todos = this.todos.filter(i => i.id !== item.id);
+        this.saveData();
     }
 
     getCount(category: Category): number {
@@ -29,7 +35,7 @@ class TodoStore {
         return this.todos.filter(i => i.categoryId === categoryId);
     }
 
-    private restoreData() {
+    private restoreData(): void {
         const data = window.localStorage.getItem(TodoStore.storeName);
         let parsedData = JSON.parse(data);
         if (!parsedData) {
@@ -38,7 +44,7 @@ class TodoStore {
         this.todos = parsedData;
     }
 
-    saveData() {
+    saveData(): void {
         window.localStorage.setItem(
             TodoStore.storeName,
             JSON.stringify(this.todos),
